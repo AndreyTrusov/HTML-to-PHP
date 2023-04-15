@@ -13,7 +13,6 @@ include __DIR__ . '/partials/body_header.php';
 
 <!-- Change#Header -->
 <!-- Change#Preloading -->
-<?= $preloading ?>
 
 <!-- Change#BodyHeader -->
 
@@ -22,7 +21,7 @@ include __DIR__ . '/partials/body_header.php';
 <div class="main-banner header-text">
   <div class="container-fluid">
     <div class="owl-banner owl-carousel">
-      <!-- zmenit na nacitavanie z bazy sql -->
+      <!-- Change#takeBlogsFromSql -->
       <?php
       include('database/connections.php');
       $blogs = get_blogs_all();
@@ -44,10 +43,9 @@ include('partials/registration_banner.php');
       <div class="col-lg-8">
         <div class="all-blog-posts">
           <div class="row">
-            <!-- zmenit na nacitavanie z bazy sql -->
-
+            <!-- Change#takeBlogsFromSql -->
             <?php
-            //include('database/connections.php');
+            // we alredy does this onse / change it
             $blogs = get_blogs_all();
             get_Posts($blogs);
             ?>

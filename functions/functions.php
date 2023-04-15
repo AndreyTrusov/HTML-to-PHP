@@ -1,15 +1,11 @@
 <?php
 $preloading = '<div id="preloader"><div class="jumper"><div></div><div></div><div></div></div></div>';
-
-// function get_menu_all()
-// {
-//     // $return_menu = "";
-//     $menu = get_menu();
-//     foreach ($menu as $section) {
-//         $return_menu = $return_menu . '<li class="nav-item"><a class="nav-link" href="' . $section["path"]. '">' . $section["name"].'</a></li>';
-//     }
-//     return $return_menu;
-// }
+function get_menu($menu)
+{
+    foreach ($menu as $section) {
+        echo '<li class="nav-item"><a class="nav-link" href="' . $section["path"]. '">' . $section["name"].'</a></li>';
+    }
+}
 function get_social_media_link_by_id($id)
 {
     $return_links = "";

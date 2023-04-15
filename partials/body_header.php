@@ -25,6 +25,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact Us</a>
                     </li>
+                    
+                    <!-- help ... <?php
+                    // include_once('database/connections.php');
+                    // $menu = get_menu_all();
+                    // get_menu($menu);
+                    ?> -->
                 </ul>
             </div>
         </div>

@@ -11,7 +11,7 @@ try {
 } catch (PDOException $exception) {
     echo "Connection to sql failed: " . $exception->getMessage();
 }
-function get_menu()
+function get_menu_all()
 {
     $request = "SELECT name, path FROM menu;";
     try {
