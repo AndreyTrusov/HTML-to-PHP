@@ -11,6 +11,11 @@ try {
 } catch (PDOException $exception) {
     echo "Connection to sql failed: " . $exception->getMessage();
 }
+
+
+
+
+
 function get_menu_all()
 {
     $request = "SELECT name, path FROM menu;";
@@ -64,7 +69,7 @@ function get_tags_by_blog_id($id)
 }
 function get_number_of_comments($id)
 {
-    $request = "SELECT count(id) as counter FROM comments where blogs_id = $id;";
+    $request = "SELECT count(id) as counter FROM comments where blog_id = $id;";
     try {
         global $connection;
         $comments = $connection->query($request);
@@ -77,7 +82,7 @@ function get_number_of_comments($id)
 }
 function get_blogs_all()
 {
-    $request = "SELECT id, category, title, banner_item_img_path as img1, banner_post_img_path as img2, date, views, text, user FROM blogs;";
+    $request = "SELECT id, category, title, banner_item_img_path as img1, banner_post_img_path as img2, date, views, text, intro_text, user FROM blogs;";
     try {
         global $connection;
         $blogs = $connection->query($request);
@@ -87,6 +92,17 @@ function get_blogs_all()
     }
 }
 
+function get_blog_all_by_id($id)
+{
+    $request = "SELECT id, category, title, banner_item_img_path as img1, banner_post_img_path as img2, date, views, text, intro_text, user FROM blogs WHERE id = $id;";
+    try {
+        global $connection;
+        $blog = $connection->query($request);
+        return $blog;
+    } catch (Exception $e) {
+        echo "Connection to sql#get_all failed: " . $e->getMessage();
+    }
+}
 function get_user_by_id($id)
 {
     $request = "SELECT nickname FROM user where id = $id;";
@@ -98,6 +114,18 @@ function get_user_by_id($id)
         }
     } catch (Exception $e) {
         echo "Connection to sql#get_user_by_id failed: " . $e->getMessage();
+    }
+}
+
+function get_comments_by_blog_id($id)
+{
+    $request = "SELECT text, user_id, date FROM comments where blog_id = $id;";
+    try {
+        global $connection;
+        $comments = $connection->query($request);
+        return $comments;
+    } catch (Exception $e) {
+        echo "Connection to sql#get_comments_by_blog_id: " . $e->getMessage();
     }
 }
 

@@ -47,7 +47,7 @@ include('partials/registration_banner.php');
             <?php
             // we alredy does this onse / change it
             $blogs = get_blogs_all();
-            get_Posts($blogs);
+            get_blog_intro($blogs);
             ?>
 
             <div class="col-lg-12">
