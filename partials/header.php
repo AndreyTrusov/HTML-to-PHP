@@ -15,7 +15,7 @@
 
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <!-- <link rel="stylesheet" href="assets/css/fontawesome.css"> -->
   <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
   <link rel="stylesheet" href="assets/css/owl.css">
   

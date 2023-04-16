@@ -6,23 +6,18 @@ include __DIR__ . '/functions/functions.php';
 include __DIR__ . '/partials/header.php';
 include __DIR__ . '/partials/body_header.php';
 include __DIR__ . '/database/connections.php';
-views_update($_GET["blog"]);
+sql_views_update($_GET["blog"]);
 ?>
 
 <html lang="en">
 
-<!-- Change#Header -->
-
-<!-- Change#Preloading -->
-
-<!-- Change#BodyHeader -->
-
-<!-- Change#Banner&RegistrationBanner -->
+<!-- Banner & Registration Banner -->
 <?php
 include('partials/banner.php');
 include('partials/registration_banner.php');
 ?>
 
+<!-- Blog -->
 <section class="blog-posts grid-system">
   <div class="container">
     <div class="row">
@@ -34,16 +29,17 @@ include('partials/registration_banner.php');
             // get if from URL and print blog ASK
             // CHANGE TO 1 LINE
             
-            $blog = get_blog_all_by_id($_GET["blog"]);
+            $blog = sql_get_blog_all_by_id($_GET["blog"]);
             get_blog_all($blog->fetch());
             
             ?>
             <div class="col-lg-12">
               <div class="sidebar-item comments">
                 <div class="sidebar-heading">
-                  <h2><?= get_number_of_comments($_GET["blog"]) ?> comment</h2>
+                  <h2><?= sql_get_number_of_comments($_GET["blog"]) ?> comment</h2>
                 </div>
                 <div class="content">
+                  <!-- Comments -->
                   <ul>
                     <?php 
                     get_commenst($_GET["blog"]);
@@ -54,6 +50,7 @@ include('partials/registration_banner.php');
             </div>
             <div class="col-lg-12">
               <div class="sidebar-item submit-comment">
+                <!-- Create comment -->
                 <div class="sidebar-heading">
                   <h2>Your comment</h2>
                 </div>
@@ -95,7 +92,7 @@ include('partials/registration_banner.php');
         </div>
       </div>
       <div class="col-lg-4">
-        <!-- Change#SideBar -->
+        <!-- Sidebar -->
         <?php
         include('partials/sidebar.php');
         ?>
@@ -105,7 +102,7 @@ include('partials/registration_banner.php');
   </div>
 </section>
 
-<!-- Change#Footer&FooterScripts -->
+<!-- Footer & Footer Scripts -->
 <?php
 include('partials/footer.php');
 include('partials/footer_script.php');

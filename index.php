@@ -10,46 +10,37 @@ include __DIR__ . '/partials/body_header.php';
 ?>
 
 <html lang="en">
-
-<!-- Change#Header -->
-<!-- Change#Preloading -->
-
-<!-- Change#BodyHeader -->
-
-<!-- Page Content -->
-<!-- Banner Starts Here -->
 <div class="main-banner header-text">
   <div class="container-fluid">
     <div class="owl-banner owl-carousel">
-      <!-- Change#takeBlogsFromSql -->
       <?php
+      // change it
       include('database/connections.php');
-      $blogs = get_blogs_all();
+      $blogs = sql_get_blogs_all("baner");
       get_blog_baner($blogs);
       ?>
     </div>
   </div>
 </div>
-<!-- Banner Ends Here -->
 
-<!-- Change#RegistrationBanner -->
+<!-- Registration banner -->
 <?php
 include('partials/registration_banner.php');
 ?>
 
+<!-- List of blogs -->
 <section class="blog-posts">
   <div class="container">
+    <h1>Blogs filtered by number of views:</h1>
     <div class="row">
       <div class="col-lg-8">
         <div class="all-blog-posts">
           <div class="row">
-            <!-- Change#takeBlogsFromSql -->
             <?php
             // we alredy does this onse / change it
-            $blogs = get_blogs_all();
+            $blogs = sql_get_blogs_all("intro");
             get_blog_intro($blogs);
             ?>
-
             <div class="col-lg-12">
               <div class="main-button">
                 <a href="blog.html">View All Posts</a>
@@ -59,7 +50,7 @@ include('partials/registration_banner.php');
         </div>
       </div>
       <div class="col-lg-4">
-        <!-- Change#SideBar -->
+        <!-- Sidebar -->
         <?php
         include('partials/sidebar.php');
         ?>
@@ -69,7 +60,7 @@ include('partials/registration_banner.php');
   </div>
 </section>
 
-<!-- Change#Footer&FooterScripts -->
+<!-- Footer & FooterScripts -->
 <?php
 include('partials/footer.php');
 include('partials/footer_script.php');

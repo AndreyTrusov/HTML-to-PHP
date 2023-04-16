@@ -9,7 +9,7 @@ function get_menu($menu)
 function get_social_media_link_by_id($id)
 {
   $return_links = "";
-  $links = get_social_media_link_by_blog_id($id);
+  $links = sql_get_social_media_link_by_blog_id($id);
   foreach ($links as $link) {
     $return_links = $return_links . '<li><a href="' . $link["link"] . '">' . $link["name"] . '</a></li>' . " , ";
   }
@@ -19,7 +19,7 @@ function get_social_media_link_by_id($id)
 function get_Info_Link_by_id($id)
 {
   $return_links = "";
-  $links = get_info_links_by_blog_id($id);
+  $links = sql_get_info_links_by_blog_id($id);
   foreach ($links as $link) {
     $return_links = $return_links . '<li><a href="' . $link["link"] . '">' . $link["name"] . '</a></li>' . " , ";
   }
@@ -43,9 +43,9 @@ function get_blog_baner($blogs)
               <h4>' . $blog['title'] . '</h4>
             </a>
             <ul class="post-info">
-              <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+              <li><a>' . sql_get_user_by_id($blog['user']) . '</a></li>
               <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-              <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+              <li><a>' . sql_get_number_of_comments($blog['id']) . ' Comments</a></li>
             </ul>
           </div>
         </div>
@@ -64,9 +64,9 @@ function get_blog_all($blog)
           <span>' . $blog['category'] . '</span>
           <h4>' . $blog['title'] . '</h4>
           <ul class="post-info">
-            <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+            <li><a>' . sql_get_user_by_id($blog['user']) . '</a></li>
             <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-            <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+            <li><a>' . sql_get_number_of_comments($blog['id']) . ' Comments</a></li>
             <li><a>' . $blog['views'] . ' Views</a></li>
           </ul>
           <p>' . $blog['text'] . '</p>
@@ -108,28 +108,12 @@ function get_blog_intro($blogs)
             <h4>' . $blog['title'] . '</h4>
           </a>
           <ul class="post-info">
-            <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+            <li><a>' . sql_get_user_by_id($blog['user']) . '</a></li>
             <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-            <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+            <li><a>' . sql_get_number_of_comments($blog['id']) . ' Comments</a></li>
             <li><a>' . $blog['views'] . ' Views</a></li>
           </ul>
           <p>' . $blog['intro_text'] . '</p>
-          <div class="post-options">
-            <div class="row">
-              <div class="col-6">
-                <ul class="post-tags">
-                  <li><i class="fa fa-tags"></i></li>
-                  <li>' . get_social_media_link_by_id($blog["id"]) . '</li>
-                </ul>
-              </div>
-              <div class="col-6">
-                <ul class="post-share">
-                    <li><i class="fa fa-share-alt"></i></li>
-                    <li>' . get_Info_Link_by_id($blog["id"]) . '</li>
-                </ul>
-            </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>';
@@ -139,7 +123,7 @@ function get_blog_intro($blogs)
 function get_commenst($id)
 {
   $return_comments = "";
-  $comments = get_comments_by_blog_id($id);
+  $comments = sql_get_comments_by_blog_id($id);
   foreach ($comments as $comment) {
     $return_comments = $return_comments . '
     <li>

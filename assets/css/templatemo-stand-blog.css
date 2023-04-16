@@ -445,7 +445,16 @@ header .navbar {
 	margin-left: 8px;
 }
 
+.blog-posts h1{
+	color: #545557;
+	margin-bottom: 20px;
+	font-size: 30px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
 .blog-posts .down-content h4 {
+	color: #545557;
 	font-size: 20px;
 	letter-spacing: 0.25px;
 }
@@ -474,10 +483,10 @@ header .navbar {
 }
 
 .blog-posts .down-content p {
-	padding: 25px 0px;
-	margin: 25px 0px;
+	padding-top: 25px;
+	margin-top: 25px;
 	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	/* border-bottom: 1px solid #eee; */
 }
 
 .blog-posts .down-content ul.post-share {
@@ -689,7 +698,7 @@ ul.page-numbers li a:hover {
 	text-transform: uppercase;
 	font-weight: 900;
 	letter-spacing: 0.5px;
-	color: #20232e;
+	color: #545557;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 15px;
 	margin-bottom: 25px;
@@ -726,7 +735,7 @@ ul.page-numbers li a:hover {
 .sidebar .recent-posts ul li h5 {
 	font-size: 19px;
 	font-weight: 900;
-	color: #20232e;
+	color: #545557;
 	line-height: 30px;
 	transition: all 0.3s;
 }
@@ -753,7 +762,7 @@ ul.page-numbers li a:hover {
 .sidebar .categories ul li a {
 	font-size: 15px;
 	font-weight: 700;
-	color: #20232e;
+	color: #545557;
 	transition: all .3s;
 }
 
@@ -794,12 +803,6 @@ footer {
 	text-align: center;
 	background-color: #20232e;
 	padding: 60px 0px;
-}
-
-footer ul.social-icons {
-	padding-bottom: 60px;
-	margin-bottom: 60px;
-	border-bottom: 1px solid rgba(250,250,250,0.15);
 }
 
 footer ul.social-icons li {
