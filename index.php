@@ -25,7 +25,7 @@ include __DIR__ . '/partials/body_header.php';
       <?php
       include('database/connections.php');
       $blogs = get_blogs_all();
-      get_Banner($blogs);
+      get_blog_baner($blogs);
       ?>
     </div>
   </div>

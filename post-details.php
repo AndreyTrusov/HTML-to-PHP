@@ -5,7 +5,8 @@
 include __DIR__ . '/functions/functions.php';
 include __DIR__ . '/partials/header.php';
 include __DIR__ . '/partials/body_header.php';
-
+include __DIR__ . '/database/connections.php';
+views_update($_GET["blog"]);
 ?>
 
 <html lang="en">
@@ -29,10 +30,13 @@ include('partials/registration_banner.php');
         <div class="all-blog-posts">
           <div class="row">
             <?php 
-            include_once('database/connections.php');
+            // include_once('database/connections.php');
             // get if from URL and print blog ASK
+            // CHANGE TO 1 LINE
+            
             $blog = get_blog_all_by_id($_GET["blog"]);
             get_blog_all($blog->fetch());
+            
             ?>
             <div class="col-lg-12">
               <div class="sidebar-item comments">
@@ -44,36 +48,6 @@ include('partials/registration_banner.php');
                     <?php 
                     get_commenst($_GET["blog"]);
                     ?>
-                    <!-- <li class="replied">
-                      <div class="author-thumb">
-                        <img src="assets/images/comment-author-02.jpg" alt="">
-                      </div>
-                      <div class="right-content">
-                        <h4>Thirteen Man<span>May 20, 2020</span></h4>
-                        <p>In porta urna sed venenatis sollicitudin. Praesent urna sem, pulvinar vel mattis eget.</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="author-thumb">
-                        <img src="assets/images/comment-author-03.jpg" alt="">
-                      </div>
-                      <div class="right-content">
-                        <h4>Belisimo Mama<span>May 16, 2020</span></h4>
-                        <p>Nullam nec pharetra nibh. Cras tortor nulla, faucibus id tincidunt in, ultrices eget
-                          ligula. Sed vitae suscipit ligula. Vestibulum id turpis volutpat, lobortis turpis ac,
-                          molestie nibh.</p>
-                      </div>
-                    </li>
-                    <li class="replied">
-                      <div class="author-thumb">
-                        <img src="assets/images/comment-author-02.jpg" alt="">
-                      </div>
-                      <div class="right-content">
-                        <h4>Thirteen Man<span>May 22, 2020</span></h4>
-                        <p>Mauris sit amet justo vulputate, cursus massa congue, vestibulum odio. Aenean elit nunc,
-                          gravida in erat sit amet, feugiat viverra leo.</p>
-                      </div>
-                    </li> -->
                   </ul>
                 </div>
               </div>

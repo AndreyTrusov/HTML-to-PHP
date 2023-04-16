@@ -26,24 +26,26 @@ function get_Info_Link_by_id($id)
   //delete last ","
   return substr($return_links, 0, -2);
 }
-function get_Banner($blogs)
+function get_blog_baner($blogs)
 {
   foreach ($blogs as $blog) {
     echo '
       <div class="item">
-        <img src="' . $blog['img1'] . '" alt="">
+        <a href="post-details.php?blog=' . $blog['id'] . '">
+          <img src="' . $blog['img1'] . '" alt="">
+        </a>
         <div class="item-content">
           <div class="main-content">
             <div class="meta-category">
               <span>' . $blog['category'] . '</span>
             </div>
-            <a href="post-details.php">
+            <a href="post-details.php?blog=' . $blog['id'] . '">
               <h4>' . $blog['title'] . '</h4>
             </a>
             <ul class="post-info">
-              <li><a href="#">' . get_user_by_id($blog['user']) . '</a></li>
-              <li><a href="#">' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-              <li><a href="#">' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+              <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+              <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
+              <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
             </ul>
           </div>
         </div>
@@ -59,15 +61,13 @@ function get_blog_all($blog)
           <img src="' . $blog['img2'] . '" alt="">
         </div>
         <div class="down-content">
-          <span>Healthy</span>
-          <a href="post-details.php">
-            <h4>' . $blog['title'] . '</h4>
-          </a>
+          <span>' . $blog['category'] . '</span>
+          <h4>' . $blog['title'] . '</h4>
           <ul class="post-info">
-            <li><a href="#">' . get_user_by_id($blog['user']) . '</a></li>
-            <li><a href="#">' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-            <li><a href="#">' . get_number_of_comments($blog['id']) . ' Comments</a></li>
-            <li><a href="#">' . $blog['views'] . ' Views</a></li>
+            <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+            <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
+            <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+            <li><a>' . $blog['views'] . ' Views</a></li>
           </ul>
           <p>' . $blog['text'] . '</p>
           <div class="post-options">
@@ -98,18 +98,20 @@ function get_blog_intro($blogs)
       <div class="col-lg-12">
       <div class="blog-post">
         <div class="blog-thumb">
-          <img src="' . $blog['img2'] . '" alt="">
+          <a href="post-details.php?blog=' . $blog['id'] . '">
+            <img src="' . $blog['img2'] . '" alt="">
+          </a>
         </div>
         <div class="down-content">
-          <span>Healthy</span>
-          <a href="post-details.php">
+          <span>' . $blog['category'] . '</span>
+          <a href="post-details.php?blog=' . $blog['id'] . '">
             <h4>' . $blog['title'] . '</h4>
           </a>
           <ul class="post-info">
-            <li><a href="#">' . get_user_by_id($blog['user']) . '</a></li>
-            <li><a href="#">' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
-            <li><a href="#">' . get_number_of_comments($blog['id']) . ' Comments</a></li>
-            <li><a href="#">' . $blog['views'] . ' Views</a></li>
+            <li><a>' . get_user_by_id($blog['user']) . '</a></li>
+            <li><a>' . date("d.m.Y", strtotime($blog['date'])) . '</a></li>
+            <li><a>' . get_number_of_comments($blog['id']) . ' Comments</a></li>
+            <li><a>' . $blog['views'] . ' Views</a></li>
           </ul>
           <p>' . $blog['intro_text'] . '</p>
           <div class="post-options">

@@ -14,7 +14,17 @@ try {
 
 
 
-
+function views_update($id)
+{
+    echo 123;
+    $request = "UPDATE blogs SET views = views + 1 WHERE blogs.id = $id;";
+    try {
+        global $connection;
+        $menu = $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#views_update: " . $e->getMessage();
+    }
+}
 
 function get_menu_all()
 {
@@ -24,7 +34,7 @@ function get_menu_all()
         $menu = $connection->query($request);
         return $menu;
     } catch (Exception $e) {
-        echo "Connection to sql#get_menu: " . $e->getMessage();
+        echo "Connection to sql faild#get_menu: " . $e->getMessage();
     }
 }
 function get_social_media_link_by_blog_id($id)
@@ -35,7 +45,7 @@ function get_social_media_link_by_blog_id($id)
         $links = $connection->query($request);
         return $links;
     } catch (Exception $e) {
-        echo "Connection to sql#get_social_media_link_by_blog_id: " . $e->getMessage();
+        echo "Connection to sql faild#get_social_media_link_by_blog_id: " . $e->getMessage();
     }
 }
 function get_info_links_by_blog_id($id)
@@ -46,7 +56,7 @@ function get_info_links_by_blog_id($id)
         $links = $connection->query($request);
         return $links;
     } catch (Exception $e) {
-        echo "Connection to sql#get_info_links_by_blog_id: " . $e->getMessage();
+        echo "Connection to sql faild#get_info_links_by_blog_id: " . $e->getMessage();
     }
 }
 function get_tags_by_blog_id($id)
@@ -64,7 +74,7 @@ function get_tags_by_blog_id($id)
         }
         return $tags;
     } catch (Exception $e) {
-        echo "Connection to sql#get_number_of_comments: " . $e->getMessage();
+        echo "Connection to sql faild#get_number_of_comments: " . $e->getMessage();
     }
 }
 function get_number_of_comments($id)
@@ -77,7 +87,7 @@ function get_number_of_comments($id)
             return $user["counter"];
         }
     } catch (Exception $e) {
-        echo "Connection to sql#get_number_of_comments: " . $e->getMessage();
+        echo "Connection to sql faild#get_number_of_comments: " . $e->getMessage();
     }
 }
 function get_blogs_all()
@@ -88,7 +98,7 @@ function get_blogs_all()
         $blogs = $connection->query($request);
         return $blogs;
     } catch (Exception $e) {
-        echo "Connection to sql#get_all failed: " . $e->getMessage();
+        echo "Connection to sql faild#get_blogs_all failed: " . $e->getMessage();
     }
 }
 
@@ -100,7 +110,7 @@ function get_blog_all_by_id($id)
         $blog = $connection->query($request);
         return $blog;
     } catch (Exception $e) {
-        echo "Connection to sql#get_all failed: " . $e->getMessage();
+        echo "Connection to sql faild#get_blog_all_by_id failed: " . $e->getMessage();
     }
 }
 function get_user_by_id($id)
@@ -113,8 +123,8 @@ function get_user_by_id($id)
             return $user["nickname"];
         }
     } catch (Exception $e) {
-        echo "Connection to sql#get_user_by_id failed: " . $e->getMessage();
-    }
+        echo "Connection to sql faild#get_user_by_id failed: " . $e->getMessage();
+    } 
 }
 
 function get_comments_by_blog_id($id)
@@ -125,7 +135,7 @@ function get_comments_by_blog_id($id)
         $comments = $connection->query($request);
         return $comments;
     } catch (Exception $e) {
-        echo "Connection to sql#get_comments_by_blog_id: " . $e->getMessage();
+        echo "Connection to sql faild#get_comments_by_blog_id: " . $e->getMessage();
     }
 }
 
