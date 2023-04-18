@@ -7,6 +7,7 @@ include __DIR__ . '/partials/header.php';
 include __DIR__ . '/partials/body_header.php';
 include __DIR__ . '/database/connections.php';
 sql_views_update($_GET["blog"]);
+$_SESSION["blog_id"] = $_GET["blog"];
 ?>
 
 <html lang="en">
@@ -50,47 +51,10 @@ include_once('partials/registration_banner.php');
                 </div>
               </div>
             </div>
-            <div class="col-lg-12">
-              <div style="margin-top: 60px;" class="sidebar-item submit-comment">
-
-                <div class="sidebar-heading">
-                  <h2>Your comment</h2>
-                </div>
-                <div class="content">
-                  <!-- Create comment -->
-                  <form id="comment" action="sendcomment.php" method="POST">
-                    <div class="row">
-                      <div class="col-md-6 col-sm-12">
-                        <fieldset>
-                          <input name="name" type="text" id="name" placeholder="Your name" required="">
-                        </fieldset>
-                      </div>
-                      <div class="col-md-6 col-sm-12">
-                        <fieldset>
-                          <input name="email" type="text" id="email" placeholder="Your email" required="">
-                        </fieldset>
-                      </div>
-                      <div class="col-md-12 col-sm-12">
-                        <fieldset>
-                          <input name="subject" type="text" id="subject" placeholder="Subject">
-                        </fieldset>
-                      </div>
-                      <div class="col-lg-12">
-                        <fieldset>
-                          <textarea name="message" rows="6" id="message" placeholder="Type your comment"
-                            required=""></textarea>
-                        </fieldset>
-                      </div>
-                      <div class="col-lg-12">
-                        <fieldset>
-                          <button type="submit" id="form-submit" class="main-button">Submit</button>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <!-- Create comments -->
+            <?php
+            get_create_commenst($_GET["blog"]);
+            ?>
           </div>
         </div>
       </div>

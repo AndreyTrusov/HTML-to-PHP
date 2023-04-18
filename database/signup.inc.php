@@ -40,6 +40,7 @@ if (isset($_POST["submit"])) {
     }
 
     createUser($name, $nickname, $password_post);
+    header("location: ../login.php");
 
 } else {
     header("location: ../signup.php");

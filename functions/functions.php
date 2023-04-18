@@ -127,15 +127,50 @@ function get_commenst($id)
   foreach ($comments as $comment) {
     $return_comments = $return_comments . '
     <li>
-    <div class="author-thumb">
-      <img src="assets/images/comment-author-01.jpg" alt="">
-    </div>
-    <div class="right-content">
-      <h4>' .  sql_get_user_by_user_id($comment["user_id"]) . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
-      <p>' . $comment["text"] . '</p>
-    </div>
-  </li>';
+      <div class="author-thumb">
+        <img src="assets/images/comment-author-01.jpg" alt="">
+      </div>
+      <div class="right-content">
+        <h4>' . sql_get_user_by_user_id($comment["user_id"]) . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
+        <p>' . $comment["text"] . '</p>
+      </div>
+    </li>';
   }
   echo $return_comments;
+}
+
+function get_create_commenst($blog_id)
+{
+  if (isset($_SESSION["user_id"])) {
+    
+    $_POST["name"] = $_SESSION["user_name"];
+    echo '
+    <div class="col-lg-12">
+              <div style="margin-top: 60px;" class="sidebar-item submit-comment">
+                <div class="sidebar-heading">
+                  <h2>Your comment</h2>
+                </div>
+                <div class="content">
+                  <!-- Create comment -->
+                  <form id="comment" action="database/sendcomment.php" method="POST">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <fieldset>
+                          <textarea name="message" rows="6" id="message" placeholder="Type your comment"
+                            required=""></textarea>
+                        </fieldset>
+                      </div>
+                      <div class="col-lg-12">
+                        <fieldset>
+                          <button type="submit" id="form-submit" class="main-button">Submit</button>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+    ';
+  }
 }
 ?>

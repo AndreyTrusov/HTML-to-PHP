@@ -1,24 +1,29 @@
 <?php
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$databaseName = 'ablog_db';
+require_once 'connections.php';
+// start session 
+session_start();
 
-try {
-    $connection = new PDO("mysql:host=$servername; dbname=$databaseName", $username, $password);
-} catch (PDOException $exception) {
-    echo "Connection to sql failed: " . $exception->getMessage();
+// if there is a registered user - set the name for the current user
+// if (isset($_SESSION["user_id"])) $_POST["name"] = $_SESSION["user_name"];
+
+if (empty($_POST['message'])) {
+    // change - if there is empty string send alert or whatever
+    header("location: ../index.php?");
+    exit();
 }
 
-if (empty($_POST['name']))
-    exit("name is empty");
-if (empty($_POST['email']))
-    exit("email is empty");
-if (empty($_POST['subject']))
-    exit("subject is empty");
-if (empty($_POST['message']))
-    exit("message is empty");
+// push comment into qsl
+if(sql_push_comment($_POST['message'], $_SESSION["blog_id"], $_SESSION["user_id"])){
+    // change - if there is empty string send alert or whatever
+    header("location: ../post-details.php?blog=" . $_SESSION["blog_id"]);
+    exit();
+}else{
+    // change - if there is empty string send alert or whatever
+    header("location: ../index.php?commentfaild");
+    exit();
+}
+// refresh web page
 
 
 ?>

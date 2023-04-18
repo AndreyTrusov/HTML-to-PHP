@@ -18,7 +18,7 @@ function sql_get_user_by_user_id($id)
         global $connection;
         $user = $connection->query($request);
         foreach ($user as $us) {
-            return $us["name"];
+            return $us["nickname"];
         }
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_user_by_user_id: " . $e->getMessage();
@@ -174,5 +174,18 @@ function sql_get_comments_by_blog_id($id)
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_comments_by_blog_id failed: " . $e->getMessage();
     }
+}
+
+function sql_push_comment($text, $blog_id, $user_id)
+{
+    $request = "INSERT INTO comments (text, blog_id, user_id, date) VALUES ('$text', $blog_id, $user_id, curdate());";
+    try {
+        global $connection;
+        $connection->query($request);
+        
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_push_comment";
+    }
+    return true;
 }
 ?>
