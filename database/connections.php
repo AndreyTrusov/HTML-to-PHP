@@ -10,6 +10,20 @@ try {
 } catch (PDOException $exception) {
     echo "Connection to sql failed: " . $exception->getMessage();
 }
+// select user name by id
+function sql_get_user_by_user_id($id)
+{
+    $request = "SELECT * FROM user where id = $id;";
+    try {
+        global $connection;
+        $user = $connection->query($request);
+        foreach ($user as $us) {
+            return $us["name"];
+        }
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_user_by_user_id: " . $e->getMessage();
+    }
+}
 
 // update views by +1
 function sql_views_update($id)
@@ -17,7 +31,7 @@ function sql_views_update($id)
     $request = "UPDATE blogs SET views = views + 1 WHERE blogs.id = $id;";
     try {
         global $connection;
-        $menu = $connection->query($request);
+        $connection->query($request);
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_views_update failed: " . $e->getMessage();
     }

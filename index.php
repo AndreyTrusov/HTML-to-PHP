@@ -1,21 +1,17 @@
-<!-- TODO: img to db / aply filter / create comments to blogs / blog post -->
+<!-- TODO: img to db / create comments to blogs / login page / SQL Injection / contacts us / create blog / delete blog / update blog -->
 
-<!DOCTYPE html>
 <?php
-
-include __DIR__ . '/functions/functions.php';
-include __DIR__ . '/partials/header.php';
-include __DIR__ . '/partials/body_header.php';
+include_once 'partials/header.php';
+include_once 'partials/body_header.php';
 
 ?>
 
-<html lang="en">
 <div class="main-banner header-text">
   <div class="container-fluid">
     <div class="owl-banner owl-carousel">
       <?php
       // change it
-      include('database/connections.php');
+      include_once('database/connections.php');
       $blogs = sql_get_blogs_all("baner");
       get_blog_baner($blogs);
       ?>
@@ -25,7 +21,7 @@ include __DIR__ . '/partials/body_header.php';
 
 <!-- Registration banner -->
 <?php
-include('partials/registration_banner.php');
+include_once('partials/registration_banner.php');
 ?>
 
 <!-- List of blogs -->
@@ -52,7 +48,7 @@ include('partials/registration_banner.php');
       <div class="col-lg-4">
         <!-- Sidebar -->
         <?php
-        include('partials/sidebar.php');
+        include_once('partials/sidebar.php');
         ?>
       </div>
     </div>
@@ -62,8 +58,8 @@ include('partials/registration_banner.php');
 
 <!-- Footer & FooterScripts -->
 <?php
-include('partials/footer.php');
-include('partials/footer_script.php');
+include_once('partials/footer.php');
+include_once('partials/footer_script.php');
 ?>
 
 </body>

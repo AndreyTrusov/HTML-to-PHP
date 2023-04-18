@@ -18,7 +18,7 @@ include __DIR__ . '/partials/body_header.php';
 
 <!-- Change#Banner -->
 <?php
-include('partials/banner.php');
+include_once('partials/banner.php');
 ?>
 
 <section class="contact-us">
@@ -30,8 +30,8 @@ include('partials/banner.php');
           <div class="row">
             <!-- Change#feedbach&info -->
             <?php
-            include('partials/feedback_message.php');
-            include('partials/contact_information.php');
+            include_once('partials/feedback_message.php');
+            include_once('partials/contact_information.php');
             ?>
           </div>
         </div>
@@ -50,8 +50,8 @@ include('partials/banner.php');
 
 <!-- Change#Footer&FooterScripts -->
 <?php
-include('partials/footer.php');
-include('partials/footer_script.php');
+include_once('partials/footer.php');
+include_once('partials/footer_script.php');
 ?>
 
 </body>

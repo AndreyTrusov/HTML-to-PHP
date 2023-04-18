@@ -25,7 +25,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact Us</a>
                     </li>
-                    
+                    <?php
+                    if (isset($_SESSION["user_id"])) {
+                        echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></a></li>';
+                    } else {
+                        echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></a></li>';
+                    }
+                    ?>
                     <!-- help ... <?php
                     // include_once('database/connections.php');
                     // $menu = get_menu_all();

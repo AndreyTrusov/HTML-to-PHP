@@ -13,8 +13,8 @@ sql_views_update($_GET["blog"]);
 
 <!-- Banner & Registration Banner -->
 <?php
-include('partials/banner.php');
-include('partials/registration_banner.php');
+include_once('partials/banner.php');
+include_once('partials/registration_banner.php');
 ?>
 
 <!-- Blog -->
@@ -24,24 +24,26 @@ include('partials/registration_banner.php');
       <div class="col-lg-8">
         <div class="all-blog-posts">
           <div class="row">
-            <?php 
+            <?php
             // include_once('database/connections.php');
             // get if from URL and print blog ASK
             // CHANGE TO 1 LINE
             
             $blog = sql_get_blog_all_by_id($_GET["blog"]);
             get_blog_all($blog->fetch());
-            
+
             ?>
             <div class="col-lg-12">
               <div class="sidebar-item comments">
                 <div class="sidebar-heading">
-                  <h2><?= sql_get_number_of_comments($_GET["blog"]) ?> comment</h2>
+                  <h2>
+                    <?= sql_get_number_of_comments($_GET["blog"]) ?> comment
+                  </h2>
                 </div>
                 <div class="content">
                   <!-- Comments -->
                   <ul>
-                    <?php 
+                    <?php
                     get_commenst($_GET["blog"]);
                     ?>
                   </ul>
@@ -49,13 +51,14 @@ include('partials/registration_banner.php');
               </div>
             </div>
             <div class="col-lg-12">
-              <div class="sidebar-item submit-comment">
-                <!-- Create comment -->
+              <div style="margin-top: 60px;" class="sidebar-item submit-comment">
+
                 <div class="sidebar-heading">
                   <h2>Your comment</h2>
                 </div>
                 <div class="content">
-                  <form id="comment" action="#" method="post">
+                  <!-- Create comment -->
+                  <form id="comment" action="sendcomment.php" method="POST">
                     <div class="row">
                       <div class="col-md-6 col-sm-12">
                         <fieldset>
@@ -94,7 +97,7 @@ include('partials/registration_banner.php');
       <div class="col-lg-4">
         <!-- Sidebar -->
         <?php
-        include('partials/sidebar.php');
+        include_once('partials/sidebar.php');
         ?>
       </div>
     </div>
@@ -104,8 +107,8 @@ include('partials/registration_banner.php');
 
 <!-- Footer & Footer Scripts -->
 <?php
-include('partials/footer.php');
-include('partials/footer_script.php');
+include_once('partials/footer.php');
+include_once('partials/footer_script.php');
 ?>
 
 </body>

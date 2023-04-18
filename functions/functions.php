@@ -131,7 +131,7 @@ function get_commenst($id)
       <img src="assets/images/comment-author-01.jpg" alt="">
     </div>
     <div class="right-content">
-      <h4>' . $comment["user_id"] . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
+      <h4>' .  sql_get_user_by_user_id($comment["user_id"]) . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
       <p>' . $comment["text"] . '</p>
     </div>
   </li>';
