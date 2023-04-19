@@ -109,6 +109,30 @@ function sql_get_number_of_comments($id)
     }
 }
 
+// get all categoryes
+function sql_get_category_all(){
+    $request = "SELECT id, name FROM ablog_db.tags;";
+    try {
+        global $connection;
+        $categoryes = $connection->query($request);
+        return $categoryes;
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_category_all: " . $e->getMessage();
+    }
+}
+
+function sql_set_category($category){
+    $request = "INSERT INTO tags (name) VALUES ('$category');";
+    try {
+        global $connection;
+        $connection->query($request);
+        return true;
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_set_category: " . $e->getMessage();
+        return false;
+    }
+}
+
 // get all blogs and filter them by switch then return PDO Object
 function sql_get_blogs_all($switch)
 {

@@ -27,6 +27,7 @@
                     </li>
                     <?php
                     if (isset($_SESSION["user_id"])) {
+                        echo '<li class="nav-item"><a class="nav-link" href="posts_menu.php">Post Menu</a></a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></a></li>';
                     } else {
                         echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></a></li>';

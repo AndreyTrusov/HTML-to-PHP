@@ -1,4 +1,5 @@
 <?php
+include_once('database/connections.php');
 $preloading = '<div id="preloader"><div class="jumper"><div></div><div></div><div></div></div></div>';
 function get_menu($menu)
 {
@@ -119,6 +120,75 @@ function get_blog_intro($blogs)
     </div>';
   }
 }
+function get_blogs($id)
+{
+  $return_blogs = "";
+  $blogs = sql_get_blogs_all("diff");
+  $iterator = 1;
+
+  foreach ($blogs as $blog) {
+    if (isset($_SESSION["user_id"]) && $blog["user"] === $id) {
+      $return_blogs = $return_blogs . '
+  <tr>
+    <th scope="row">' . $iterator++ . '</th>
+    <td>' . $blog["title"] . '</td>
+    <td><a href="edit_blog.php"><button type="button" class="btn btn-outline-info btn-sm">Edit blog</button></a></td>
+    <td><button type="button" class="btn btn btn-outline-danger btn-sm">Delete blog</button>
+    </td>
+  </tr>
+  ';
+    }
+  }
+  echo $return_blogs;
+}
+
+function get_blog_all_edit()
+{
+  $return_categorys = "";
+  $categoryes = sql_get_category_all();
+  foreach ($categoryes as $category) {
+    if (isset($_SESSION["user_id"])) {
+      return '
+      <div style="margin-top: 40px;" class="form-group">
+        <label for="exampleFormControlInput1" style="color: #f48840;">Tittle</label>
+        <input name="create_blog_tittle" type="text" class="form-control"
+          id="exampleFormControlInput1" placeholder="Preco macky miaukaju">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput" style="color: #f48840;">Intro text</label>
+        <input name="create_blog_intro_text" type="text" class="form-control"
+          id="formGroupExampleInput" placeholder="Intro ku textu">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1" style="color: #f48840;">Text</label>
+        <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1"
+          rows="3"></textarea>
+      </div>
+      <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Edit categories that are belong to blog:</p>
+  ';
+    }
+  }
+  echo $return_categorys;
+}
+
+function get_category()
+{
+  $return_categorys = "";
+  $categoryes = sql_get_category_all();
+  foreach ($categoryes as $category) {
+    if (isset($_SESSION["user_id"])) {
+      $return_categorys = $return_categorys . '
+    <div class="form-check">
+      <input name="checkbox_' . $category["name"] . '" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+          ' . $category["name"] . '
+      </label>
+    </div>
+  ';
+    }
+  }
+  echo $return_categorys;
+}
 
 function get_commenst($id)
 {
@@ -142,7 +212,7 @@ function get_commenst($id)
 function get_create_commenst($blog_id)
 {
   if (isset($_SESSION["user_id"])) {
-    
+
     $_POST["name"] = $_SESSION["user_name"];
     echo '
     <div class="col-lg-12">
