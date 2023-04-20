@@ -211,5 +211,18 @@ function sql_push_comment($text, $blog_id, $user_id)
         echo "Connection to sql faild#sql_push_comment";
     }
     return true;
+};
+
+function delete_post($id)
+{   
+    // doplnit
+    $request = "";
+    try {
+        global $connection;
+        $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#delete_post";
+    }
+    return true;
 }
 ?>

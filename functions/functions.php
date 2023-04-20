@@ -132,8 +132,8 @@ function get_blogs($id)
   <tr>
     <th scope="row">' . $iterator++ . '</th>
     <td>' . $blog["title"] . '</td>
-    <td><a href="edit_blog.php"><button type="button" class="btn btn-outline-info btn-sm">Edit blog</button></a></td>
-    <td><button type="button" class="btn btn btn-outline-danger btn-sm">Delete blog</button>
+    <td><a href="edit_blog.php?blog_id=' . $blog['id'] . '"><button type="button" class="btn btn-outline-info btn-sm">Edit blog</button></a></td>
+    <td><a href="database/delete_blog.inc.php?blog_id=' . $blog['id'] . '"><button type="button" class="btn btn btn-outline-danger btn-sm">Delete blog</button></a>
     </td>
   </tr>
   ';
@@ -142,27 +142,27 @@ function get_blogs($id)
   echo $return_blogs;
 }
 
-function get_blog_all_edit()
+function get_blog_all_edit($blog_id)
 {
   $return_categorys = "";
-  $categoryes = sql_get_category_all();
-  foreach ($categoryes as $category) {
+  $blogs = sql_get_blog_all_by_id($blog_id);
+  foreach ($blogs as $blog) {
     if (isset($_SESSION["user_id"])) {
       return '
       <div style="margin-top: 40px;" class="form-group">
         <label for="exampleFormControlInput1" style="color: #f48840;">Tittle</label>
-        <input name="create_blog_tittle" type="text" class="form-control"
-          id="exampleFormControlInput1" placeholder="Preco macky miaukaju">
+        <input name="create_blog_tittle" value="' . $blog['title'] . '" type="text" class="form-control"
+          id="exampleFormControlInput1">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput" style="color: #f48840;">Intro text</label>
         <input name="create_blog_intro_text" type="text" class="form-control"
-          id="formGroupExampleInput" placeholder="Intro ku textu">
+          id="formGroupExampleInput" value="' . $blog['intro_text'] . '">
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1" style="color: #f48840;">Text</label>
         <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1"
-          rows="3"></textarea>
+          rows="3">' . $blog['text'] . '</textarea>
       </div>
       <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Edit categories that are belong to blog:</p>
   ';

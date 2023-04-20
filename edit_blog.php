@@ -12,8 +12,10 @@ include_once 'partials/body_header.php';
                     <form id="blog" action="database/create_blog.inc.php" method="POST">
                         <?php
                         include_once('functions/functions.php');
-                        echo get_blog_all_edit();
-                        echo get_category();
+                        // pass user id to blog
+                        // kak ponat sto buuton delete nazal i vziat jeho id
+                        echo get_blog_all_edit($_GET['blog_id']);
+                        //echo get_category();
                         ?>
                         <hr>
                         <br>

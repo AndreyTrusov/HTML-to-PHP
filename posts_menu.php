@@ -19,7 +19,8 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="create_blog.php"><button style="margin-bottom: 10px;" type="button" class="btn btn btn-success btn-sm"> + Create blog</button></a>
+                    <a href="create_blog.php"><button style="margin-bottom: 10px;" type="button"
+                            class="btn btn btn-success btn-sm"> + Create blog</button></a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -32,7 +33,7 @@ session_start();
                         <tbody>
                             <?php
                             include_once('functions/functions.php');
-                            echo get_blogs($_SESSION["user_id"]); 
+                            echo get_blogs($_SESSION["user_id"]);
                             ?>
                         </tbody>
                     </table>
