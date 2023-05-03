@@ -2,26 +2,6 @@
 session_start();
 require_once 'connections.php';
 
-// create_blog_tittle
-// create_blog_intro_text 
-// create_blog_text
-// create_blog_new_category
-// checkbox-Awesome_Layouts
-// foreach($_POST as $key => $value){
-//     echo $key . " | ";
-// }
-
-// create new category
-// if ((empty($_POST['create_blog_new_category'])) ) {
-//     header("location: ../create_blog.php?error=empty_category");
-//     exit();
-// } else {
-//     if (sql_set_category($_POST["create_blog_new_category"])) {
-//         header("location: ../create_blog.php");
-//         exit();
-//     }
-// }
-
 // create new blog
 if (empty($_POST['create_blog_tittle'])) {
     header("location: ../create_blog.php?error=empty_tittle");

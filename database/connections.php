@@ -110,7 +110,8 @@ function sql_get_number_of_comments($id)
 }
 
 // get all categoryes
-function sql_get_category_all(){
+function sql_get_category_all()
+{
     $request = "SELECT id, name FROM ablog_db.tags;";
     try {
         global $connection;
@@ -121,7 +122,8 @@ function sql_get_category_all(){
     }
 }
 
-function sql_set_category($category){
+function sql_set_category($category)
+{
     $request = "INSERT INTO tags (name) VALUES ('$category');";
     try {
         global $connection;
@@ -147,7 +149,8 @@ function sql_get_blogs_all($switch)
             ORDER BY views DESC LIMIT 3;";
             break;
         default:
-            $request = "SELECT id, category, title, banner_item_img_path as img1, banner_post_img_path as img2, date, views, text, intro_text, user FROM blogs;";
+            $request = "SELECT id, category, title, banner_item_img_path as img1, banner_post_img_path as img2, date, views, text, intro_text, user FROM blogs
+            ORDER BY date DESC;";
     }
 
     try {
@@ -206,17 +209,49 @@ function sql_push_comment($text, $blog_id, $user_id)
     try {
         global $connection;
         $connection->query($request);
-        
+
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_push_comment";
     }
     return true;
-};
+}
+;
 
-function delete_post($id)
-{   
-    // doplnit
-    $request = "";
+function delete_blog($id)
+{
+    $request = "DELETE FROM blogs WHERE blogs.id = '$id'";
+    try {
+        global $connection;
+        $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#delete_post";
+    }
+
+    $request = "DELETE FROM social_media_links WHERE social_media_links.blog_id = '$id'";
+    try {
+        global $connection;
+        $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#delete_blog_social media_links";
+    }
+
+    $request = "DELETE FROM comments WHERE comments.blog_.id = '$id'";
+    try {
+        global $connection;
+        $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#delete_post";
+    }
+
+    $request = "DELETE FROM blog_tags WHERE blog_tags.blogs_id = '$id'";
+    try {
+        global $connection;
+        $connection->query($request);
+    } catch (Exception $e) {
+        echo "Connection to sql faild#delete_post";
+    }
+
+    $request = "DELETE FROM blog_info_links WHERE blog_info_links.blog_id = '$id'";
     try {
         global $connection;
         $connection->query($request);
@@ -224,5 +259,20 @@ function delete_post($id)
         echo "Connection to sql faild#delete_post";
     }
     return true;
+}
+
+function sql_update_blog($text, $intro_text, $tittle, $blog_id)
+{
+
+    $request = "UPDATE blogs SET title = '$tittle', text = '$text', intro_text = '$intro_text'
+    WHERE blogs.id = '$blog_id';";
+
+    try {
+        global $connection;
+        $blogs = $connection->query($request);
+        return $blogs;
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_blogs_all failed: " . $e->getMessage();
+    }
 }
 ?>

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<!-- CELU STRANKU ZMENIT, posty nech sa adresuju na totu stranku ktora sa automaticy vygeneruje podla urciteho postu -->
 <?php
 
 include __DIR__ . '/functions/functions.php';
 include __DIR__ . '/partials/header.php';
 include __DIR__ . '/partials/body_header.php';
-include __DIR__ . '/database/connections.php';
+// include __DIR__ . '/database/connections.php';
 sql_views_update($_GET["blog"]);
 $_SESSION["blog_id"] = $_GET["blog"];
 ?>
@@ -17,7 +16,7 @@ $_SESSION["blog_id"] = $_GET["blog"];
 include_once('partials/banner.php');
 include_once('partials/registration_banner.php');
 ?>
-
+<body>
 <!-- Blog -->
 <section class="blog-posts grid-system">
   <div class="container">

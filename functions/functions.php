@@ -27,8 +27,9 @@ function get_Info_Link_by_id($id)
   //delete last ","
   return substr($return_links, 0, -2);
 }
-function get_blog_baner($blogs)
+function get_blog_baner()
 {
+  $blogs = sql_get_blogs_all("baner");
   foreach ($blogs as $blog) {
     echo '
       <div class="item">
@@ -92,8 +93,9 @@ function get_blog_all($blog)
     </div>';
 }
 
-function get_blog_intro($blogs)
+function get_blog_intro()
 {
+  $blogs = sql_get_blogs_all("intro");
   foreach ($blogs as $blog) {
     echo '
       <div class="col-lg-12">
@@ -149,22 +151,30 @@ function get_blog_all_edit($blog_id)
   foreach ($blogs as $blog) {
     if (isset($_SESSION["user_id"])) {
       return '
-      <div style="margin-top: 40px;" class="form-group">
-        <label for="exampleFormControlInput1" style="color: #f48840;">Tittle</label>
-        <input name="create_blog_tittle" value="' . $blog['title'] . '" type="text" class="form-control"
-          id="exampleFormControlInput1">
-      </div>
-      <div class="form-group">
-        <label for="formGroupExampleInput" style="color: #f48840;">Intro text</label>
-        <input name="create_blog_intro_text" type="text" class="form-control"
-          id="formGroupExampleInput" value="' . $blog['intro_text'] . '">
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1" style="color: #f48840;">Text</label>
-        <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1"
-          rows="3">' . $blog['text'] . '</textarea>
-      </div>
-      <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Edit categories that are belong to blog:</p>
+      <form id="blog" action="database/update_blog.inc.php?blog_id=' . $_GET['blog_id'] . '" method="POST">
+  <div style="margin-top: 40px;" class="form-group">
+    <label for="exampleFormControlInput1" style="color: #17a2b8;">Tittle</label>
+    <input name="update_blog_tittle" value="' . $blog['title'] . '" type="text" class="form-control"
+      id="exampleFormControlInput1">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput" style="color: #17a2b8;">Intro text</label>
+    <input name="update_blog_intro_text" type="text" class="form-control" id="formGroupExampleInput"
+      value="' . $blog['intro_text'] . '">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1" style="color: #17a2b8;">Text</label>
+    <textarea name="update_blog_text" class="form-control" id="exampleFormControlTextarea1"
+      rows="3">' . $blog['text'] . '</textarea>
+  </div>
+  <p class="text-left" style="margin-bottom: 10px; color: #17a2b8;">Edit categories:</p>
+  <hr>
+  <br>
+  <button style="background-color: #17a2b8; color: white;" type="submit" class="btn ">
+      Update blog</button>
+  <br>
+</form>
+      
   ';
     }
   }
@@ -177,9 +187,10 @@ function get_category()
   $categoryes = sql_get_category_all();
   foreach ($categoryes as $category) {
     if (isset($_SESSION["user_id"])) {
+      // HELP --> type radio 
       $return_categorys = $return_categorys . '
     <div class="form-check">
-      <input name="checkbox_' . $category["name"] . '" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <input name="radio_' . $category["name"] . '" class="form-check-input" type="radio" id="defaultCheck1">
       <label class="form-check-label" for="defaultCheck1">
           ' . $category["name"] . '
       </label>
@@ -241,6 +252,58 @@ function get_create_commenst($blog_id)
               </div>
             </div>
     ';
+  }
+}
+
+function sidebar_get_blogs()
+{
+  $return_blog = "";
+  $blogs = sql_get_blogs_all("");
+  foreach ($blogs as $blog) {
+    $return_blog = $return_blog . '
+    <li><a href="post-details.php?blog=' . $blog['id'] . '">
+           <h5>' . $blog['title'] . '</h5>
+                <span>' . date("d.m.Y", strtotime($blog['date'])) . '</span>
+        </a></li>
+   ';
+  }
+  echo $return_blog;
+}
+
+function get_blogs_all_for_blog_page()
+{
+  $blogs = sql_get_blogs_all("baner");
+  foreach ($blogs as $blog) {
+    echo '
+    <div class="col-lg-6">
+              <div class="blog-post">
+                <div class="blog-thumb">
+                <a href="post-details.php?blog=' . $blog['id'] . '">
+                  <img src="' . $blog['img1'] . '" alt="">
+                </a>
+                </div>
+                <div class="down-content">
+                  <span>' . $blog['category'] . '</span>
+                  <a href="post-details.php?blog=' . $blog['id'] . '">
+                    <h4>' . $blog['title'] . '</h4>
+                  </a>
+                  <ul class="post-info">
+                    <li>' . sql_get_user_by_id($blog['user']) . '</li>
+                    <li>' . date("d.m.Y", strtotime($blog['date'])) . '</li>
+                    <li>' . sql_get_number_of_comments($blog['id']) . ' Comments</li>
+                  </ul>
+                  <p>' . $blog['intro_text'] . '</p>
+                  <div class="post-options">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      ';
   }
 }
 ?>

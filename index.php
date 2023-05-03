@@ -10,10 +10,7 @@ include_once 'partials/body_header.php';
   <div class="container-fluid">
     <div class="owl-banner owl-carousel">
       <?php
-      // change it
-      include_once('database/connections.php');
-      $blogs = sql_get_blogs_all("baner");
-      get_blog_baner($blogs);
+      get_blog_baner();
       ?>
     </div>
   </div>
@@ -33,15 +30,13 @@ include_once('partials/registration_banner.php');
         <div class="all-blog-posts">
           <div class="row">
             <?php
-            // we alredy does this onse / change it
-            $blogs = sql_get_blogs_all("intro");
-            get_blog_intro($blogs);
+            get_blog_intro();
             ?>
-            <div class="col-lg-12">
+            <!-- <div class="col-lg-12">
               <div class="main-button">
                 <a href="blog.html">View All Posts</a>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

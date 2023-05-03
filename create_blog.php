@@ -25,12 +25,17 @@ include_once 'partials/body_header.php';
                             <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1"
                                 rows="3"></textarea>
                         </div>
-                        <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Choose which categories the blog
-                            belongs to:</p>
+                        <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Choose category the blog belongs to:</p>
                         <?php
                         include_once('functions/functions.php');
                         echo get_category();
                         ?>
+                        <br>
+                        <button style="background-color: #f48840; color: white;" type="submit" class="btn ">
+                            + Create blog</button>
+                    </form>
+                    <hr>
+                    <form id="blog" action="database/create_category.inc.php" method="POST">
                         <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Create new category:</p>
                         <div class="row">
                             <div class="col">
@@ -42,10 +47,6 @@ include_once 'partials/body_header.php';
                                     + Create category</button>
                             </div>
                         </div>
-                        <hr>
-                        <button style="background-color: #f48840; color: white;" type="submit" class="btn ">
-                            + Create blog</button>
-                        <br>
                     </form>
                 </div>
             </div>

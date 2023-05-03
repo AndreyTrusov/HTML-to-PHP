@@ -6,11 +6,11 @@
         <div class="content">
             <ul>
                 <li>
-                    <h5>090-484-8080</h5>
+                    <h5>+421-090-484-808</h5>
                     <span>PHONE NUMBER</span>
                 </li>
                 <li>
-                    <h5>info@company.com</h5>
+                    <h5>info@ablog.com</h5>
                     <span>EMAIL ADDRESS</span>
                 </li>
                 <li>
