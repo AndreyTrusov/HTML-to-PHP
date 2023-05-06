@@ -57,6 +57,18 @@ include_once('partials/registration_banner.php');
               get_create_commenst($blog_id);
               ?>
             </div>
+            <!-- alerts from URL  -->
+            <?php
+            if (isset($_GET["status"])) {
+              if ($_GET["status"] == "commnet_has_no_text") {
+                echo '<br><div class="alert alert-danger" role="alert">Type something to create commnet</div>';
+              } else if ($_GET["status"] == "sql_comment_faild") {
+                echo '<br><div class="alert alert-danger" role="alert">Database is down... contact us please!</div>';
+              } else if ($_GET["status"] == "commnet_succeed") {
+                echo '<br><div class="alert alert-success" role="alert">Commnet is created</div>';
+              }
+            }
+            ?>
           </div>
         </div>
         <div class="col-lg-4">

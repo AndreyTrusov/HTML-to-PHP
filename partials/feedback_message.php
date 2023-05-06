@@ -4,7 +4,6 @@
             <h2>Send us a message</h2>
         </div>
         <div class="content">
-            <!-- edit this -->
             <form id="contact" action="" method="post">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">

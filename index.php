@@ -30,11 +30,6 @@ include_once('partials/registration_banner.php');
             <?php
             get_blog_intro();
             ?>
-            <!-- <div class="col-lg-12">
-              <div class="main-button">
-                <a href="blog.html">View All Posts</a>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>

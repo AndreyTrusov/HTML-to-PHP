@@ -6,7 +6,7 @@ require_once 'connections.php';
 
 // check for empty input
 if (empty($_POST['create_blog_new_category'])) {
-    header("location: ../create_blog.php?error=empty_category");
+    header("location: ../create_blog.php?status=empty_category");
     exit();
 }
 
@@ -14,6 +14,6 @@ if (empty($_POST['create_blog_new_category'])) {
 sql_set_category($_POST['create_blog_new_category']);
 
 // go to previous page
-header("location: ../create_blog.php?status=succeed_category");
+header("location: ../create_blog.php?status=succeed_category_created");
 exit();
 ?>

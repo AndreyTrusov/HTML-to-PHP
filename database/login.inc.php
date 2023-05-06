@@ -7,16 +7,13 @@ if (isset($_POST["submit"])) {
     require_once 'connections.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputLogin($nickname, $password_post) === true) {
+    //check for empty or valid imputs
+    if (emptyInputLogin($nickname, $password_post)) {
         header("location: ../login.php?error=emptyinput");
         exit();
     }
 
-    if (invalidNickname($nickname) !== false) {
-        header("location: ../login.php?error=invalidnickname");
-        exit();
-    }
-
+    // if every fields is OK --> log in user and go to main page
     loginUser($nickname, $password_post);
 
 } else {

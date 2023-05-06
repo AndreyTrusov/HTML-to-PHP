@@ -8,21 +8,13 @@ include __DIR__ . '/partials/body_header.php';
 ?>
 <html lang="en">
 
-<!-- Change#Header -->
-
-<!-- Change#Preloading -->
 <?= $preloading ?>
 
-<!-- Change#BodyHeader -->
-
-<!-- Change#Banner -->
 <?php
 include_once('partials/banner.php');
 ?>
-
 <section class="about-us">
   <div class="container">
-
     <div class="row">
       <div class="col-lg-12">
         <img src="assets/images/about-us.jpg" alt="">

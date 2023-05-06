@@ -1,5 +1,6 @@
 <?php
 require_once 'connections.php';
+// cheks if there is empty imputs on signup page
 function emptyInputSignup($name, $nickname, $password_post, $passwordrepeat)
 {
     if (empty($name) || empty($nickname) || empty($password_post) || empty($passwordrepeat)) {
@@ -102,6 +103,7 @@ function createUser($name, $nickname, $password)
     }
 }
 
+// log in user into system function
 function loginUser($nickname, $password_post)
 {
     $user_Id = "1";
@@ -122,13 +124,13 @@ function loginUser($nickname, $password_post)
         exit();
     }
     if ($nickname !== $sql_nickname) {
-        header("location: ../login.php?error=wrongnickname");
+        header("location: ../login.php?error=wrong_nickname");
         exit();
     }
     if ($check_Password === false) {
-        header("location: ../login.php?error=wrongpassword");
+        header("location: ../login.php?error=wrong_password");
         exit();
-    } else if ($check_Password === true) {
+    } else if ($check_Password === true) { // if every thing is okey --> start session 
         if(session_status() !== PHP_SESSION_ACTIVE) session_start();
         $_SESSION["user_id"] = $user_Id;
         $_SESSION["user_name"] = $user_Name;

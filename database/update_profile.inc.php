@@ -6,12 +6,12 @@ require_once 'connections.php';
 
 // check for empty input
 if (empty($_POST['update_profile_username'])) {
-    header("location: ../profile.php?error=empty_username");
+    header("location: ../profile.php?status=empty_username");
     exit();
 }
 
 if (empty($_POST['update_profile_nickname'])) {
-    header("location: ../profile.php?error=empty_name");
+    header("location: ../profile.php?status=empty_nickname");
     exit();
 }
 

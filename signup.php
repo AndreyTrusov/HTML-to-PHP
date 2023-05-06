@@ -57,21 +57,21 @@ include __DIR__ . '/partials/body_header.php';
                                                         <button name="submit" type="submit" id="form-submit"
                                                             class="main-button">Submit</button>
                                                     </fieldset>
+                                                    <!-- alerts from URL  -->
                                                     <?php
-                                                    // change
                                                     if (isset($_GET["error"])) {
-                                                        if ($_GET["error"] = "emptyinput") {
-                                                            echo "<p>Empty input</p>";
-                                                        } else if ($_GET["error"] = "invalidname") {
-                                                            echo "<p>Invalid name</p>";
-                                                        } else if ($_GET["error"] = "invalidnickname") {
-                                                            echo "<p>Invalid nickname</p>";
-                                                        } else if ($_GET["error"] = "passworddontmatch") {
-                                                            echo "<p>Password dont match</p>";
-                                                        } else if ($_GET["error"] = "usertaken") {
-                                                            echo "<p>User taken</p>";
-                                                        } else if ($_GET["error"] = "nicknametaken") {
-                                                            echo "<p>Nick name taken</p>";
+                                                        if ($_GET["error"] == "emptyinput") {
+                                                            echo '<br><div class="alert alert-danger" role="alert">Empty imput</div>';
+                                                        } else if ($_GET["error"] == "invalidname") {
+                                                            echo '<br><div class="alert alert-danger" role="alert">Invalid name, change your name</div>';
+                                                        } else if ($_GET["error"] == "invalidnickname") {
+                                                            echo '<br><div class="alert alert-danger" role="alert">Invalid nickname, change your nickname</div>';
+                                                        } else if ($_GET["error"] == "passworddontmatch") {
+                                                            echo '<br><div class="alert alert-danger" role="alert">Password do not match</div>';
+                                                        } else if ($_GET["error"] == "usertaken") {
+                                                            echo '<br><div class="alert alert-danger" role="alert"User name taken</div>';
+                                                        } else if ($_GET["error"] == "nicknametaken") {
+                                                            echo '<br><div class="alert alert-danger" role="alert">Nickname taken</div>';
                                                         }
                                                     }
                                                     ?>

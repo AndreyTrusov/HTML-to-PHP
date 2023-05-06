@@ -1,29 +1,21 @@
 <?php
 
 require_once 'connections.php';
-// start session 
 session_start();
 
-// if there is a registered user - set the name for the current user
-// if (isset($_SESSION["user_id"])) $_POST["name"] = $_SESSION["user_name"];
-
-if (empty($_POST['message'])) {
-    // change - if there is empty string send alert or whatever
-    header("location: ../index.php?");
+if (empty($_POST['commnet_text'])) {
+    header("location: ../post-details.php?status=commnet_has_no_text");
     exit();
 }
 
 // push comment into qsl
-if(sql_push_comment($_POST['message'], $_SESSION["blog_id"], $_SESSION["user_id"])){
+if (sql_push_comment($_POST['commnet_text'], $_SESSION["blog_id"], $_SESSION["user_id"])) {
     // change - if there is empty string send alert or whatever
-    header("location: ../post-details.php?blog=" . $_SESSION["blog_id"]);
+    header("location: ../post-details.php?blog=" . $_SESSION["blog_id"] . "&status=commnet_succeed");
     exit();
-}else{
+} else {
     // change - if there is empty string send alert or whatever
-    header("location: ../index.php?commentfaild");
+    header("location: ../post-details.php?status=sql_comment_faild");
     exit();
 }
-// refresh web page
-
-
 ?>

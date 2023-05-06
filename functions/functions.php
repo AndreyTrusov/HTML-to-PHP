@@ -214,30 +214,30 @@ function get_create_commenst($blog_id)
     $_POST["name"] = $_SESSION["user_name"];
     echo '
     <div class="col-lg-12">
-              <div style="margin-top: 60px;" class="sidebar-item submit-comment">
-                <div class="sidebar-heading">
-                  <h2>Your comment</h2>
-                </div>
-                <div class="content">
-                  <!-- Create comment -->
-                  <form id="comment" action="database/sendcomment.php" method="POST">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <fieldset>
-                          <textarea name="message" rows="6" id="message" placeholder="Type your comment"
-                            required=""></textarea>
-                        </fieldset>
-                      </div>
-                      <div class="col-lg-12">
-                        <fieldset>
-                          <button type="submit" id="form-submit" class="main-button">Submit</button>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
+    <div style="margin-top: 60px;" class="sidebar-item submit-comment">
+      <div class="sidebar-heading">
+        <h2>Your comment</h2>
+      </div>
+      <div class="content">
+        <!-- Create comment -->
+        <form id="comment" action="database/sendcomment.php" method="POST">
+          <div class="row">
+            <div class="col-lg-12">
+              <fieldset>
+                <textarea name="commnet_text" rows="6" id="message" placeholder="Type your comment"
+                  required=""></textarea>
+              </fieldset>
             </div>
+            <div class="col-lg-12">
+              <fieldset>
+                <button type="submit" id="form-submit" class="main-button">Submit</button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
     ';
   }
 }
@@ -261,35 +261,33 @@ function get_blogs_all_for_blog_page()
 {
   $blogs = sql_get_blogs_all("baner");
   foreach ($blogs as $blog) {
-    echo '
-    <div class="col-lg-6">
-              <div class="blog-post">
-                <div class="blog-thumb">
-                <a href="post-details.php?blog=' . $blog['id'] . '">
-                  <img src="' . $blog['img1'] . '" alt="">
-                </a>
-                </div>
-                <div class="down-content">
-                  <span>' . $blog['category'] . '</span>
-                  <a href="post-details.php?blog=' . $blog['id'] . '">
-                    <h4>' . $blog['title'] . '</h4>
-                  </a>
-                  <ul class="post-info">
-                    <li>' . sql_get_user_by_id($blog['user']) . '</li>
-                    <li>' . date("d.m.Y", strtotime($blog['date'])) . '</li>
-                    <li>' . sql_get_number_of_comments($blog['id']) . ' Comments</li>
-                  </ul>
-                  <p>' . $blog['intro_text'] . '</p>
-                  <div class="post-options">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    echo '<div class="col-lg-6">
+    <div class="blog-post">
+      <div class="blog-thumb">
+        <a href="post-details.php?blog=' . $blog['id'] . '">
+          <img src="' . $blog['img1'] . '" alt="">
+        </a>
+      </div>
+      <div class="down-content">
+        <span>' . $blog['category'] . '</span>
+        <a href="post-details.php?blog=' . $blog['id'] . '">
+          <h4>' . $blog['title'] . '</h4>
+        </a>
+        <ul class="post-info">
+          <li>' . sql_get_user_by_id($blog['user']) . '</li>
+          <li>' . date("d.m.Y", strtotime($blog['date'])) . '</li>
+          <li>' . sql_get_number_of_comments($blog['id']) . ' Comments</li>
+        </ul>
+        <p>' . $blog['intro_text'] . '</p>
+        <div class="post-options">
+          <div class="row">
+            <div class="col-lg-12">
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       ';
   }
 }

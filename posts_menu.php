@@ -2,7 +2,7 @@
 include_once 'partials/header.php';
 include_once 'partials/body_header.php';
 
-if(!isset($_SESSION["user_id"])){
+if (!isset($_SESSION["user_id"])) {
     header("location: index.php");
     exit();
 }
@@ -13,25 +13,31 @@ if(!isset($_SESSION["user_id"])){
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 200px;">
-                    <?php if (isset($_GET["status"])) if ($_GET["status"] === "succeed_deleted")
-                        echo '<p class="text-left" style="margin-bottom: 10px; color: green;">Blog is deleted.</p>' ?>
-                            <a href="create_blog.php"><button style="margin-bottom: 10px;" type="button"
-                                    class="btn btn btn-success btn-sm"> + Create blog</button></a>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                    include_once('functions/functions.php');
-                    get_blogs($_SESSION["user_id"]);
+                    <!-- alerts from URL  -->
+                    <?php
+                    if (isset($_GET["status"])) {
+                        if ($_GET["status"] == "succeed_deleted") {
+                            echo '<br><div class="alert alert-success" role="alert">Blog is successfully deleted!</div>';
+                        }
+                    }
                     ?>
-                        </tbody>
+                    <!-- create button -->
+                    <a href="create_blog.php"><button style="margin-bottom: 10px;" type="button"
+                            class="btn btn btn-success btn-sm"> + Create blog</button></a>
+                    <!-- blogs table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        include_once('functions/functions.php');
+                        get_blogs($_SESSION["user_id"]);
+                        ?>
                     </table>
                 </div>
             </div>

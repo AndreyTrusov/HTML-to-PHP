@@ -4,17 +4,17 @@ require_once 'connections.php';
 
 // create new blog
 if (empty($_POST['create_blog_tittle'])) {
-    header("location: ../create_blog.php?error=empty_tittle");
+    header("location: ../create_blog.php?status=empty_tittle");
     exit();
 }
 
 if (empty($_POST['create_blog_intro_text'])) {
-    header("location: ../create_blog.php?error=empty_intro_text");
+    header("location: ../create_blog.php?status=empty_intro_text");
     exit();
 }
 
 if (empty($_POST['create_blog_text'])) {
-    header("location: ../create_blog.php?error=empty_text");
+    header("location: ../create_blog.php?status=empty_text");
     exit();
 }
 
@@ -26,7 +26,7 @@ foreach ($_POST as $key => $value) {
 sql_create_blog($_POST['create_blog_tittle'], $_POST['create_blog_intro_text'], $_POST['create_blog_text'], $_POST['create_blog_category'], $_SESSION["user_id"]);
 
 // go to post menu page
-header("location: ../posts_menu.php?status=succeed_blog");
+header("location: ../create_blog.php?status=succeed_blog_created");
 exit();
 
 ?>

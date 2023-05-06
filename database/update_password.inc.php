@@ -6,7 +6,7 @@ require_once 'connections.php';
 
 // check for empty input
 if (empty($_POST['update_profile_password'])) {
-    header("location: ../profile.php?error=empty_password");
+    header("location: ../profile.php?status=empty_password");
     exit();
 }
 

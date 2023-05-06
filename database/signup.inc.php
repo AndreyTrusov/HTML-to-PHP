@@ -9,36 +9,38 @@ if (isset($_POST["submit"])) {
     require_once 'connections.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputSignup($name, $nickname, $password_post , $passwordrepeat) !== false) {
-        header("location: ../signup.php?error=emptyinput");
+    //check for empty or valid imputs
+    if (emptyInputSignup($name, $nickname, $password_post , $passwordrepeat)) {
+        header("location: ../signup.php?error=empty_input");
         exit();
     }
 
-    if (invalidUid($name) !== false) {
+    if (invalidUid($name)) {
         header("location: ../signup.php?error=invalidname");
         exit();
     }
 
-    if (invalidNickname($nickname) !== false) {
+    if (invalidNickname($nickname)) {
         header("location: ../signup.php?error=invalidnickname");
         exit();
     }
 
-    if (passwordMatch($password_post , $passwordrepeat) !== false) {
+    if (passwordMatch($password_post , $passwordrepeat)) {
         header("location: ../signup.php?error=passworddontmatch");
         exit();
     }
 
-    if (userExists($name) !== false) {
+    if (userExists($name)) {
         header("location: ../signup.php?error=usertaken");
         exit();
     }
 
-    if (nicknameExists($nickname) !== false) {
+    if (nicknameExists($nickname)) {
         header("location: ../signup.php?error=nicknametaken");
         exit();
     }
 
+    // if every fields is OK --> create new user and go to login page
     createUser($name, $nickname, $password_post);
     header("location: ../login.php");
 
