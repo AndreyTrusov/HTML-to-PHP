@@ -1,6 +1,18 @@
-<h1 align="center">Hi 👋, I'm Andrey Trusov</h1>
+<h2 align="center">HTML tamplate to PHP web with Databse</h2>
 <h3 align="center"The task is to convert existing HTML code into dynamic PHP code</h3>
+#
+This project is a PHP web application with a database backend that allows users to create a profile, write blog posts, and manage them.
+# Features
+- Blog menu page where users can delete, edit, or create new blog posts.
+- User authentication: Allow users to register for an account and login with their credentials. Implement access control to ensure that only authorized users can access certain parts of the application.
+- Profile page where users can change their username, nickname, and password.
+# Database Features
+This PHP web application uses a MySQL database to store user information and blog post data.
 
+![adblog_databse](https://user-images.githubusercontent.com/67972109/236649310-2ee82099-44da-4627-888d-0858550f302c.png)
+
+<img src="https://img.shields.io/github/commit-activity/m/AndreyTrusov/HTML-to-PHP?style=for-the-badge">
+<img src="https://img.shields.io/github/directory-file-count/AndreyTrusov/HTML-to-PHP?style=for-the-badge"><img src="https://img.shields.io/github/languages/count/AndreyTrusov/HTML-to-PHP?style=for-the-badge"><img src="https://img.shields.io/github/languages/count/AndreyTrusov/HTML-to-PHP?style=for-the-badge">
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> 
