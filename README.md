@@ -1,4 +1,4 @@
-# HTML tamplate to PHP web with Databse
+# HTML tamplate to PHP web with Database
 The task is to convert existing HTML code into dynamic PHP code
 
 This project is a PHP web application with a database backend that allows users to create a profile, write blog posts, and manage them.
