@@ -1,6 +1,8 @@
 # HTML tamplate to PHP web with Databse
 The task is to convert existing HTML code into dynamic PHP code
-## This project is a PHP web application with a database backend that allows users to create a profile, write blog posts, and manage them.
+
+This project is a PHP web application with a database backend that allows users to create a profile, write blog posts, and manage them.
+
 ## Features
 - Blog menu page where users can delete, edit, or create new blog posts.
 - User authentication: Allow users to register for an account and login with their credentials. Implement access control to ensure that only authorized users can access certain parts of the application.
