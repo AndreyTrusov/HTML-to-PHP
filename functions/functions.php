@@ -54,9 +54,11 @@ function get_blog_baner()
       </div>';
   }
 }
-function get_blog_all($blog)
+function get_blog_all($blog_id)
 {
-  echo '
+  $blogs = sql_get_blog_all_by_id($blog_id);
+  foreach ($blogs as $blog) {
+    echo '
       <div class="col-lg-12">
       <div class="blog-post">
         <div class="blog-thumb">
@@ -91,6 +93,7 @@ function get_blog_all($blog)
         </div>
       </div>
     </div>';
+  }
 }
 
 function get_blog_intro()
@@ -124,13 +127,12 @@ function get_blog_intro()
 }
 function get_blogs($id)
 {
-  $return_blogs = "";
   $blogs = sql_get_blogs_all("diff");
   $iterator = 1;
 
   foreach ($blogs as $blog) {
     if (isset($_SESSION["user_id"]) && $blog["user"] === $id) {
-      $return_blogs = $return_blogs . '
+      echo '
   <tr>
     <th scope="row">' . $iterator++ . '</th>
     <td>' . $blog["title"] . '</td>
@@ -141,64 +143,49 @@ function get_blogs($id)
   ';
     }
   }
-  echo $return_blogs;
 }
 
 function get_blog_all_edit($blog_id)
 {
-  $return_categorys = "";
   $blogs = sql_get_blog_all_by_id($blog_id);
   foreach ($blogs as $blog) {
     if (isset($_SESSION["user_id"])) {
-      return '
+      echo '
       <form id="blog" action="database/update_blog.inc.php?blog_id=' . $_GET['blog_id'] . '" method="POST">
-  <div style="margin-top: 40px;" class="form-group">
-    <label for="exampleFormControlInput1" style="color: #17a2b8;">Tittle</label>
-    <input name="update_blog_tittle" value="' . $blog['title'] . '" type="text" class="form-control"
-      id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-    <label for="formGroupExampleInput" style="color: #17a2b8;">Intro text</label>
-    <input name="update_blog_intro_text" type="text" class="form-control" id="formGroupExampleInput"
-      value="' . $blog['intro_text'] . '">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1" style="color: #17a2b8;">Text</label>
-    <textarea name="update_blog_text" class="form-control" id="exampleFormControlTextarea1"
-      rows="3">' . $blog['text'] . '</textarea>
-  </div>
-  <p class="text-left" style="margin-bottom: 10px; color: #17a2b8;">Edit categories:</p>
-  <hr>
-  <br>
-  <button style="background-color: #17a2b8; color: white;" type="submit" class="btn ">
-      Update blog</button>
-  <br>
-</form>
-      
+        <div style="margin-top: 40px;" class="form-group">
+            <label for="exampleFormControlInput1" style="color: #17a2b8;">Tittle</label>
+            <input name="update_blog_tittle" value="' . $blog['title'] . '" type="text" class="form-control"
+                id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput" style="color: #17a2b8;">Intro text</label>
+            <input name="update_blog_intro_text" type="text" class="form-control" id="formGroupExampleInput"
+                value="' . $blog['intro_text'] . '">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="color: #17a2b8;">Text</label>
+            <textarea style="height:300px" name="update_blog_text" class="form-control" id="exampleFormControlTextarea1"
+                rows="3">' . $blog['text'] . '</textarea>
+        </div>
+        <p class="text-left" style="margin-bottom: 10px; color: #17a2b8;">Edit categories:</p>
   ';
     }
   }
-  echo $return_categorys;
 }
 
 function get_category()
 {
-  $return_categorys = "";
   $categoryes = sql_get_category_all();
+  $choosed_category = sql_get_blog_category($_GET['blog_id']);
+
+  echo '<option value="' . $choosed_category . '">' . $choosed_category . '</option>';
+
   foreach ($categoryes as $category) {
     if (isset($_SESSION["user_id"])) {
-      // HELP --> type radio 
-      $return_categorys = $return_categorys . '
-    <div class="form-check">
-      <input name="radio_' . $category["name"] . '" class="form-check-input" type="radio" id="defaultCheck1">
-      <label class="form-check-label" for="defaultCheck1">
-          ' . $category["name"] . '
-      </label>
-    </div>
-  ';
+      echo '<option value="' . $category["name"] . '">' . $category["name"] . '</option>';
     }
   }
-  echo $return_categorys;
+
 }
 
 function get_commenst($id)
@@ -212,7 +199,7 @@ function get_commenst($id)
         <img src="assets/images/comment-author-01.jpg" alt="">
       </div>
       <div class="right-content">
-        <h4>' . sql_get_user_by_user_id($comment["user_id"]) . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
+        <h4>' . sql_get_user_nickname($comment["user_id"]) . '<span>' . date("d.m.Y", strtotime($comment['date'])) . '</span></h4>
         <p>' . $comment["text"] . '</p>
       </div>
     </li>';

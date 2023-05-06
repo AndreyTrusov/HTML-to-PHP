@@ -21,7 +21,7 @@ if (empty($_POST['update_blog_text'])) {
 }
 
 // update fields
-sql_update_blog($_POST['update_blog_text'], $_POST['update_blog_intro_text'], $_POST['update_blog_tittle'], $_GET["blog_id"]);
+sql_update_blog($_POST['update_blog_text'], $_POST['update_blog_intro_text'], $_POST['update_blog_tittle'], $_POST['create_blog_category'], $_GET["blog_id"]);
 
 // go to previous page
 header("location: ../posts_menu.php?status=succeed_update");

@@ -1,5 +1,3 @@
-<!-- TODO: img to db / create comments to blogs / SQL Injection / contacts us / create blog / delete blog / update blog -->
-
 <?php
 include_once 'partials/header.php';
 include_once 'partials/body_header.php';

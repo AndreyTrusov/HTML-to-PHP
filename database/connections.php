@@ -11,7 +11,7 @@ try {
     echo "Connection to sql failed: " . $exception->getMessage();
 }
 // select user name by id
-function sql_get_user_by_user_id($id)
+function sql_get_user_nickname($id)
 {
     $request = "SELECT * FROM user where id = $id;";
     try {
@@ -21,7 +21,7 @@ function sql_get_user_by_user_id($id)
             return $us["nickname"];
         }
     } catch (Exception $e) {
-        echo "Connection to sql faild#sql_get_user_by_user_id: " . $e->getMessage();
+        echo "Connection to sql faild#sql_get_user_nickname: " . $e->getMessage();
     }
 }
 
@@ -43,8 +43,7 @@ function sql_get_menu_all()
     $request = "SELECT name, path FROM menu;";
     try {
         global $connection;
-        $menu = $connection->query($request);
-        return $menu;
+        return $connection->query($request);
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_menu failed: " . $e->getMessage();
     }
@@ -56,8 +55,7 @@ function sql_get_social_media_link_by_blog_id($id)
     $request = "SELECT name, link FROM social_media_links where blog_id = $id;";
     try {
         global $connection;
-        $links = $connection->query($request);
-        return $links;
+        return $connection->query($request);
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_social_media_link_by_blog_id failed: " . $e->getMessage();
     }
@@ -69,8 +67,7 @@ function sql_get_info_links_by_blog_id($id)
     $request = "SELECT name, link FROM blog_info_links where blog_id = $id;";
     try {
         global $connection;
-        $links = $connection->query($request);
-        return $links;
+        return $connection->query($request);
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_info_links_by_blog_id failed: " . $e->getMessage();
     }
@@ -100,10 +97,7 @@ function sql_get_number_of_comments($id)
     $request = "SELECT count(id) as counter FROM comments where blog_id = $id;";
     try {
         global $connection;
-        $comments = $connection->query($request);
-        foreach ($comments as $user) {
-            return $user["counter"];
-        }
+        return $connection->query($request)->fetch()[0];
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_number_of_comments failed: " . $e->getMessage();
     }
@@ -115,8 +109,7 @@ function sql_get_category_all()
     $request = "SELECT id, name FROM ablog_db.tags;";
     try {
         global $connection;
-        $categoryes = $connection->query($request);
-        return $categoryes;
+        return $connection->query($request);
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_category_all: " . $e->getMessage();
     }
@@ -181,10 +174,7 @@ function sql_get_user_by_id($id)
     $request = "SELECT nickname FROM user where id = $id;";
     try {
         global $connection;
-        $users = $connection->query($request);
-        foreach ($users as $user) {
-            return $user["nickname"];
-        }
+        return $connection->query($request)->fetch()[0];
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_user_by_id failed: " . $e->getMessage();
     }
@@ -209,13 +199,12 @@ function sql_push_comment($text, $blog_id, $user_id)
     try {
         global $connection;
         $connection->query($request);
-
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_push_comment";
     }
     return true;
 }
-;
+
 
 function delete_blog($id)
 {
@@ -261,10 +250,10 @@ function delete_blog($id)
     return true;
 }
 
-function sql_update_blog($text, $intro_text, $tittle, $blog_id)
+function sql_update_blog($text, $intro_text, $tittle, $category, $blog_id)
 {
 
-    $request = "UPDATE blogs SET title = '$tittle', text = '$text', intro_text = '$intro_text'
+    $request = "UPDATE blogs SET title = '$tittle', text = '$text', intro_text = '$intro_text', category = '$category'
     WHERE blogs.id = '$blog_id';";
 
     try {
@@ -273,6 +262,60 @@ function sql_update_blog($text, $intro_text, $tittle, $blog_id)
         return $blogs;
     } catch (Exception $e) {
         echo "Connection to sql faild#sql_get_blogs_all failed: " . $e->getMessage();
+    }
+}
+function sql_create_blog($tittle, $intro_text, $text, $category, $user_id)
+{
+    $request = "INSERT INTO blogs (id, title, banner_item_img_path, banner_post_img_path, date, views, text, intro_text, user, category) 
+    VALUES (NULL, '$tittle', 'assets/images/banner-item-01.jpg', 'assets/images/blog-post-01.jpg',  curdate(), '0', '$text', '$intro_text', '$user_id', '$category')";
+    try {
+        global $connection;
+        $connection->query($request);
+
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_create_blog";
+    }
+    return true;
+}
+function sql_get_blog_category($id)
+{
+    $request = "SELECT category FROM blogs where id = $id;";
+    try {
+        global $connection;
+        return $connection->query($request)->fetch()[0];
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_blog_category: " . $e->getMessage();
+    }
+}
+function sql_get_user_name($id)
+{
+    $request = "SELECT user_name FROM ablog_db.user where id = '$id';";
+    try {
+        global $connection;
+        echo $connection->query($request)->fetch()[0];
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_user_name: " . $e->getMessage();
+    }
+}
+function sql_update_profile($username, $nickname, $id)
+{
+    $request = "UPDATE user SET user_name = '$username', `nickname` = '$nickname' WHERE `user`.`id` = '$id';";
+    try {
+        global $connection;
+        echo $connection->query($request)->fetch()[0];
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_user_name: " . $e->getMessage();
+    }
+}
+function sql_update_password($password, $id)
+{
+    $hashedPws = password_hash($password, PASSWORD_DEFAULT);
+    $request = "UPDATE user SET heslo = '$hashedPws' WHERE user.id = '$id';";
+    try {
+        global $connection;
+        echo $connection->query($request)->fetch()[0];
+    } catch (Exception $e) {
+        echo "Connection to sql faild#sql_get_user_name: " . $e->getMessage();
     }
 }
 ?>

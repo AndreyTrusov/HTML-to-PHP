@@ -1,6 +1,11 @@
 <?php
 include_once 'partials/header.php';
 include_once 'partials/body_header.php';
+
+if(!isset($_SESSION["user_id"])){
+    header("location: index.php");
+    exit();
+}
 ?>
 
 <body>
@@ -24,7 +29,7 @@ include_once 'partials/body_header.php';
                                 <tbody>
                                 <?php
                     include_once('functions/functions.php');
-                    echo get_blogs($_SESSION["user_id"]);
+                    get_blogs($_SESSION["user_id"]);
                     ?>
                         </tbody>
                     </table>
@@ -32,7 +37,6 @@ include_once 'partials/body_header.php';
             </div>
         </div>
     </section>
-
     <?php
     include_once('partials/footer.php');
     include_once('partials/footer_script.php');

@@ -1,6 +1,11 @@
 <?php
 include_once 'partials/header.php';
 include_once 'partials/body_header.php';
+
+if(!isset($_SESSION["user_id"])){
+    header("location: index.php");
+    exit();
+}
 ?>
 
 <body>
@@ -13,23 +18,26 @@ include_once 'partials/body_header.php';
                         <div style="margin-top: 40px;" class="form-group">
                             <label for="exampleFormControlInput1" style="color: #f48840;">Tittle</label>
                             <input name="create_blog_tittle" type="text" class="form-control"
-                                id="exampleFormControlInput1" placeholder="Preco macky miaukaju">
+                                id="exampleFormControlInput1" placeholder="Example tittle">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput" style="color: #f48840;">Intro text</label>
                             <input name="create_blog_intro_text" type="text" class="form-control"
-                                id="formGroupExampleInput" placeholder="Intro ku textu">
+                                id="formGroupExampleInput" placeholder="Example intro text">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1" style="color: #f48840;">Text</label>
-                            <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1"
+                            <textarea name="create_blog_text" class="form-control" id="exampleFormControlTextarea1" placeholder="Example text"
                                 rows="3"></textarea>
                         </div>
-                        <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Choose category the blog belongs to:</p>
-                        <?php
-                        include_once('functions/functions.php');
-                        echo get_category();
-                        ?>
+                        <p class="text-left" style="margin-bottom: 10px; color: #f48840;">Choose category the blog
+                            belongs to:</p>
+                        <select name="create_blog_category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <?php
+                            include_once('functions/functions.php');
+                            get_category();
+                            ?>
+                        </select>
                         <br>
                         <button style="background-color: #f48840; color: white;" type="submit" class="btn ">
                             + Create blog</button>

@@ -19,22 +19,14 @@ if (empty($_POST['create_blog_text'])) {
 }
 
 foreach ($_POST as $key => $value) {
-    $str = substr($key, 0, 9);
-    $iterator = 0;
-
-    echo $str . "+" . $iterator . " | ";
-    
-    if (strpos($key, "checkbox_") !== false){
-        $iterator++;
-    }
-    
-    // if($iterator == 0){
-    //     header("location: ../create_blog.php?error=empty_category_checkbox|$iterator");
-    //     exit();
-    // }
+    echo $key . " + " . $value . "//";
 }
 
-echo $iterator;
+// send blog info to db
+sql_create_blog($_POST['create_blog_tittle'], $_POST['create_blog_intro_text'], $_POST['create_blog_text'], $_POST['create_blog_category'], $_SESSION["user_id"]);
 
+// go to post menu page
+header("location: ../posts_menu.php?status=succeed_blog");
+exit();
 
 ?>
